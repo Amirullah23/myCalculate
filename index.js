@@ -75,6 +75,10 @@ function parent(mtxf) {
     
 
 }
+
+function reset() {
+    window.location.reload()
+}
     
     
 
