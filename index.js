@@ -11,6 +11,10 @@
     var mtxf = []
 
     function klik() {
+        console.log(mtxf.length);  
+        if(mtxf.length >= 9) {
+            mtxf = []
+        }
         let data = document.getElementsByClassName("inp")       
         for(i = 0; i < data.length; i++) {
             mtxf.push(parseInt(data[i].value))
