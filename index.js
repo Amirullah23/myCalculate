@@ -7,10 +7,11 @@
     7 8 9 7 8*/
 //[mtx[0],mtx[1],mtx[2],mtx[0],mtx[1],mtx[3],mtx[4],mtx[5],mtx[3],mtx[4],mtx[6],mtx[7],mtx[8],mtx[6],mtx[7]]
 //[mtx[0],mtx[1],mtx[2],mtx[3],mtx[4],mtx[5],mtx[6],mtx[7],mtx[8],mtx[9],mtx[10],mtx[11],mtx[12],mtx[13],mtx[14]]
+var mtxf = []
 
-    var mtxf = []
+var rsldet;
 
-    function klik() {
+function klik() {
         console.log(mtxf.length);  
         if(mtxf.length >= 9) {
             mtxf = []
@@ -21,7 +22,10 @@
         }      
         console.log(mtxf);  
         parent(mtxf)
-        }
+        minor(mtxf)
+
+        document.getElementById("invers").style.display = "block"
+}
        
     
 
@@ -76,15 +80,99 @@ function parent(mtxf) {
     console.log(determinan);
     document.getElementById("inihasilnya").innerHTML = determinan
 
-    
+    return rsldet = determinan
 
 }
 
 function reset() {
     window.location.reload()
 }
+
+
+
     
+function minor(mtxf) {
+    let z = mtxf
+
+    let a = z[4] * z[8] - z[5] * z[7]
+    let b = z[3] * z[8] - z[5] * z[6]
+    let c = z[3] * z[7] - z[4] * z[6]
+    let d = z[1] * z[8] - z[2] * z[7]
+    let e = z[0] * z[8] - z[2] * z[6]
+    let f = z[0] * z[7] - z[1] * z[6]
+    let g = z[1] * z[5] - z[2] * z[4]
+    let h = z[0] * z[5] - z[2] * z[3]
+    let i = z[0] * z[4] - z[1] * z[3]
+
+
+    let minorA = [+a,-b,+c,-d,+e,-f,+g,-h,+i]
+
+    let adj = [ minorA[0],minorA[3],minorA[6],
+                minorA[1],minorA[4],minorA[7],
+                minorA[2],minorA[5],minorA[8]]
+                console.log(minorA);
+                console.log(adj);
+    let invers = [] 
+    let inversOri = [] 
+
+
+
+    for(i = 0; i < adj.length; i++) {
+        str = 1 / rsldet * adj[i]
+       
+        invers.push(str.toString())
+        inversOri.push(adj[i])
+        
+    }
+
+        console.log(invers, "invers ori");
+
+        inversSecond = []
+        inversSecondKey = []
+
+        for (h = 0; h < invers.length; h++) {
+            console.log(invers[h])
+            let tmpinvers = invers[h]
+           for (j = 0; j < tmpinvers.length; j++) {
+               console.log("brp kali")
+               if (tmpinvers[j] == ".") {
+
+                    inversSecond.push(`1 / ${rsldet} * ${inversOri[h]}`) 
+                    inversSecondKey.push(h)
+               }
+               
+           }
+            
+        }
+
+        console.log(inversSecond);
+        console.log(inversSecondKey,"keyy");
+
+        for (let o = 0; o < inversSecondKey.length; o++) {
+            invers.splice(inversSecondKey[o], 1, inversSecond[0])
+            
+        }
+
+        console.log("hasil akhir invers", invers)
+
+let appendd = document.getElementsByClassName("invershehe")
+for (let k = 0; k < invers.length; k++) {
+    appendd[k].value = invers[k]
     
+}
+        
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
