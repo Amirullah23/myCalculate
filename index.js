@@ -136,8 +136,23 @@ function minor(mtxf) {
            for (j = 0; j < tmpinvers.length; j++) {
                console.log("brp kali")
                if (tmpinvers[j] == ".") {
+                   let rslreduceOne;
+                   let rslreduceTwo;
 
-                    inversSecond.push(`1 / ${rsldet} * ${inversOri[h]}`) 
+                   function reduce(numer,denomin){ 
+                    var gcd = function gcd(a,b){ 
+                      return b ? gcd(b, a%b) : a; 
+                    }; 
+                    gcd = gcd(numer,denomin);
+                     if(gcd <= 0) {
+                        gcd = -gcd
+                     }
+                    return rslreduceOne =numer/gcd, rslreduceTwo = denomin/gcd; 
+                  }
+                  reduce(rsldet,inversOri[h]) 
+
+
+                    inversSecond.push(`1 / ${rslreduceOne} * ${rslreduceTwo}`) 
                     inversSecondKey.push(h)
                }
                
@@ -149,7 +164,7 @@ function minor(mtxf) {
         console.log(inversSecondKey,"keyy");
 
         for (let o = 0; o < inversSecondKey.length; o++) {
-            invers.splice(inversSecondKey[o], 1, inversSecond[0])
+            invers.splice(inversSecondKey[o], 1, inversSecond[o])
             
         }
 
@@ -162,6 +177,12 @@ for (let k = 0; k < invers.length; k++) {
 }
         
 }
+
+
+
+
+
+
 
 
 
