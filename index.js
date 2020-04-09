@@ -149,7 +149,7 @@ function minor(mtxf) {
         console.log(inversSecondKey,"keyy");
 
         for (let o = 0; o < inversSecondKey.length; o++) {
-            invers.splice(inversSecondKey[o], 1, inversSecond[0])
+            invers.splice(inversSecondKey[o], 1, inversSecond[o])
             
         }
 
